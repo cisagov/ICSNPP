@@ -1,0 +1,788 @@
+## events.bif
+##
+## Binpac BACnet Protocol Analyzer - Defines events the analyzer will generate 
+##
+## Author:  Stephen Kleinheider
+## Contact: stephen.kleinheider@inl.gov
+##
+## Copyright (c) 2020 Battelle Energy Alliance, LLC.  All rights reserved.
+
+###################################################################################################
+#######################################  LOGGED BY DEFAULT  #######################################
+###################################################################################################
+
+## -----------------------------------------bacnet-header------------------------------------------
+## Event Description:
+##      Event is generated for all BACnet packets and contains relevant BACnet header data
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - bvlc_function:        count       -> BVLC Function (see bvlc_functions in consts.pac)
+##      - pdu_type:             count       -> APDU Type (see apdu_types in consts.pac)
+##      - pdu_service:          count       -> APDU Type (see apdu_types in consts.pac)
+##      - invoke_id:            count       -> APDU Service (see unconfirmed_service_choice and 
+##                                             confirmed_service_choice in consts.pac)
+##      - result_code:          count       -> See (abort_reasons, reject_reasons, and error_codes)
+## Default Output:
+##      Writes to log file bacnet.log
+## ------------------------------------------------------------------------------------------------
+event bacnet_header%(c: connection,
+                     bvlc_function: count,
+                     pdu_type: count,
+                     pdu_service: count,
+                     invoke_id: count,
+                     result_code: count%);
+ 
+## ------------------------------------------bacnet-i-am-------------------------------------------
+## Event Description:
+##      Event is generated for all BACnet I-Am packets
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - object_type:          count       -> Object Type from Device Identifier
+##      - instance_number:      count       -> Instance Number from Device Identifier
+##      - max_apdu:             count       -> Max APDU Length Accepted
+##      - segmentation:         count       -> Segmentation Supported
+##      - vendor_id:            count       -> Vendor ID
+## Default Output:
+##      Writes to log file bacnet_discovery.log
+## ------------------------------------------------------------------------------------------------
+event bacnet_i_am%(c: connection,
+                   object_type: count,
+                   instance_number: count,
+                   max_apdu: count,
+                   segmentation: count,
+                   vendor_id: count%);
+
+## -----------------------------------------bacnet-who-is------------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Who-Is packets
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - low_limit:            count       -> Device Instance Range Low Limit
+##      - high_limit:           count       -> Device Instance Range High Limit
+## Default Output:
+##      Writes to log file bacnet_discovery.log
+## ------------------------------------------------------------------------------------------------
+event bacnet_who_is%(c: connection,
+                     low_limit: count,
+                     high_limit: count%);
+
+## -----------------------------------------bacnet-i-have------------------------------------------
+## Event Description:
+##      Event is generated for all BACnet I-Have packets
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - device_object_type:   count       -> Object Type from Device Identifier
+##      - device_instance_num:  count       -> Instance Number from Device Identifier
+##      - object_object_type:   count       -> Object Type from Object Identifier
+##      - object_instance_num:  count       -> Instance Number from Object Identifier
+##      - object_name:          string      -> Object Name
+## Default Output:
+##      Writes to log file bacnet_discovery.log
+## ------------------------------------------------------------------------------------------------
+event bacnet_i_have%(c: connection,
+                     device_object_type: count,
+                     device_instance_num: count,
+                     object_object_type: count,
+                     object_instance_num: count,
+                     object_name: string%);
+
+## -----------------------------------------bacnet-who-has-----------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Who-Has packets
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - low_limit:            count       -> Device Instance Range Low Limit
+##      - high_limit:           count       -> Device Instance Range High Limit
+##      - object_type:          count       -> Object Type from Object Identifier
+##      - instance_number:      count       -> Instance Number from Object Identifier
+##      - object_name:          string      -> Object Name
+## Default Output:
+##      Writes to log file bacnet_discovery.log
+## ------------------------------------------------------------------------------------------------
+event bacnet_who_has%(c: connection,
+                      low_limit: count,
+                      high_limit: count,
+                      object_type: count,
+                      instance_number: count,
+                      object_name: string%);
+
+## --------------------------------------bacnet-read-property--------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Read-Property packets
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - object_type:          count       -> Object Type from Object Identifier
+##      - instance_number:      count       -> Instance Number from Object Identifier
+##      - property_identifier:  count       -> Property Identifier (see property_identifiers in consts.zeek)
+##      - property_array_index: count       -> Property Array Index
+## Default Output:
+##      Writes to log file bacnet_property.log
+## ------------------------------------------------------------------------------------------------
+event bacnet_read_property%(c: connection,
+                            pdu_service: string,
+                            object_type: count,
+                            instance_number: count,
+                            property_identifier: count,
+                            property_array_index: count%);
+
+## ------------------------------------bacnet-read-property-ack------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Read-Property_ACK packets
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - object_type:          count       -> Object Type from Object Identifier
+##      - instance_number:      count       -> Instance Number from Object Identifier
+##      - property_identifier:  count       -> Property Identifier (see property_identifiers in consts.zeek)
+##      - property_array_index: count       -> Property Array Index
+##      - property_value:       string      -> Property Value result
+## Default Output:
+##      Writes to log file bacnet_property.log
+## ------------------------------------------------------------------------------------------------
+event bacnet_read_property_ack%(c: connection,
+                                pdu_service: string,
+                                object_type: count,
+                                instance_number: count,
+                                property_identifier: count,
+                                property_array_index: count,
+                                property_value: string%);
+
+## -------------------------------------bacnet-write-property--------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Write_Property packets
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - object_type:          count       -> Object Type from Object Identifier
+##      - instance_number:      count       -> Instance Number from Object Identifier
+##      - property_identifier:  count       -> Property Identifier (see property_identifiers in consts.zeek)
+##      - property_array_index: count       -> Property Array Index
+##      - priority:             count       -> Priority assigned to this write operation
+##      - property_value:       string      -> Property Value to be Written
+## Default Output:
+##      Writes to log file bacnet_property.log
+## ------------------------------------------------------------------------------------------------
+event bacnet_write_property%(c: connection,
+                             object_type: count,
+                             instance_number: count,
+                             property_identifier: count,
+                             property_array_index: count,
+                             priority: count,
+                             property_value: string%);
+
+## -------------------------------------bacnet-property-error--------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Read Property Errors
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - pdu_type:             count       -> APDU Type (see apdu_types in consts.pac)
+##      - pdu_service:          count       -> APDU Type (see apdu_types in consts.pac)
+##      - result_code:          count       -> See (abort_reasons, reject_reasons, and error_codes)
+## Default Output:
+##      Writes to log file bacnet_property.log
+## ------------------------------------------------------------------------------------------------
+event bacnet_property_error%(c: connection,
+                             pdu_type: count,
+                             pdu_service: count,
+                             result_code: count%);
+
+###################################################################################################
+###################################  END OF LOGGED BY DEFAULT  ####################################
+###################################################################################################
+
+
+###################################################################################################
+#####################################  NOT LOGGED BY DEFAULT  #####################################
+###################################################################################################
+
+## ------------------------------bacnet-unconfirmed-cov-notification-------------------------------
+## Event Description:
+##      Event is generated for all BACnet Unconfirmed_Cov_Notification packets
+## Event Data:
+##      See process_unconfirmed_cov_notification in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_unconfirmed_cov_notification%(c: connection,
+                                           subscriber_id: count,
+                                           initiating_object_type: count,
+                                           initiating_instance_number: count,
+                                           monitored_object_type: count,
+                                           monitored_instance_number: count,
+                                           time_remaining: count%);
+
+## -----------------------------bacnet-unconfirmed-event-notification------------------------------
+## Event Description:
+##      Event is generated for all BACnet Unconfirmed_Event_Notification packets
+## Event Data:
+##      See process_unconfirmed_event_notification in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_unconfirmed_event_notification%(c: connection,
+                                             process_identifier: count,
+                                             initiating_object_type: count,
+                                             initiating_instance_number: count,
+                                             event_object_type: count,
+                                             event_instance_number: count,
+                                             notification_class: count,
+                                             priority: count,
+                                             event_type: count,
+                                             message_text: string,
+                                             notify_type: count,
+                                             ack_required: count,
+                                             from_state: count,
+                                             to_state: count%);
+
+## ------------------------------bacnet-unconfirmed-private-transfer-------------------------------
+## Event Description:
+##      Event is generated for all BACnet Unconfirmed_Private_Transfer packets
+## Event Data:
+##      See process_unconfirmed_private_transfer in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_unconfirmed_private_transfer%(c: connection,
+                                           vendor_id: count,
+                                           service_number: count%);
+
+## --------------------------------bacnet-unconfirmed-text-message---------------------------------
+## Event Description:
+##      Event is generated for all BACnet Unconfirmed_Text_Message packets
+## Event Data:
+##      See process_unconfirmed_text_message in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_unconfirmed_text_message%(c: connection,
+                                       object_type: count,
+                                       instance_number: count,
+                                       message_priority: count,
+                                       message: string%);
+
+## ----------------------------------bacnet-time-synchronization-----------------------------------
+## Event Description:
+##      Event is generated for all BACnet Time_Synchronization packets
+## Event Data:
+##      See process_time_synchronization in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_time_synchronization%(c: connection,
+                                   year: count,
+                                   month: count,
+                                   day: count,
+                                   day_of_week: count,
+                                   hour: count,
+                                   minute: count,
+                                   second: count,
+                                   millisecond: count%);
+
+## --------------------------------bacnet-utc-time-synchronization---------------------------------
+## Event Description:
+##      Event is generated for all BACnet Utc_Time_Synchronization packets
+## Event Data:
+##      See process_utc_time_synchronization in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_utc_time_synchronization%(c: connection,
+                                       year: count,
+                                       month: count,
+                                       day: count,
+                                       day_of_week: count,
+                                       hour: count,
+                                       minute: count,
+                                       second: count,
+                                       millisecond: count%);
+
+## ---------------------------------------bacnet-write-group---------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Write_Group packets
+## Event Data:
+##      See process_write_group in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_write_group%(c: connection,
+                          group_number: count,
+                          write_priority: count%);
+
+## --------------------------bacnet-unconfirmed-cov-notification-multiple--------------------------
+## Event Description:
+##      Event is generated for all BACnet Unconfirmed_Cov_Notification_Multiple packets
+## Event Data:
+##      See process_unconfirmed_cov_notification_multiple in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_unconfirmed_cov_notification_multiple%(c: connection,
+                                                    subscriber_id: count,
+                                                    initiating_object_type: count,
+                                                    initiating_instance_number: count,
+                                                    time_remaining: count%);
+
+## ------------------------------------bacnet-acknowledge-alarm------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Acknowledge_Alarm packets
+## Event Data:
+##      See process_acknowledge_alarm in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_acknowledge_alarm%(c: connection,
+                                acknowledge_process_id: count,
+                                event_object_type: count,
+                                event_instance_number: count,
+                                event_state: count%);
+
+## -------------------------------bacnet-confirmed-cov-notification--------------------------------
+## Event Description:
+##      Event is generated for all BACnet Confirmed_Cov_Notification packets
+## Event Data:
+##      See process_confirmed_cov_notification in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_confirmed_cov_notification%(c: connection,
+                                         subscriber_id: count,
+                                         initiating_object_type: count,
+                                         initiating_instance_number: count,
+                                         monitored_object_type: count,
+                                         monitored_instance_number: count,
+                                         time_remaining: count%);
+
+## ------------------------------bacnet-confirmed-event-notification-------------------------------
+## Event Description:
+##      Event is generated for all BACnet Confirmed_Event_Notification packets
+## Event Data:
+##      See process_confirmed_event_notification in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_confirmed_event_notification%(c: connection,
+                                           process_identifier: count,
+                                           initiating_object_type: count,
+                                           initiating_instance_number: count,
+                                           event_object_type: count,
+                                           event_instance_number: count,
+                                           notification_class: count,
+                                           priority: count,
+                                           event_type: count,
+                                           message_text: string,
+                                           notify_type: count,
+                                           ack_required: count,
+                                           from_state: count,
+                                           to_state: count%);
+
+## ------------------------------------bacnet-get-alarm-summary------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Get_Alarm_Summary packets
+## Event Data:
+##      See process_get_alarm_summary in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_get_alarm_summary%(c: connection%);
+
+## ---------------------------------bacnet-get-enrollment-summary----------------------------------
+## Event Description:
+##      Event is generated for all BACnet Get_Enrollment_Summary packets
+## Event Data:
+##      See process_get_enrollment_summary in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_get_enrollment_summary%(c: connection%);
+
+## --------------------------------------bacnet-subscribe-cov--------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Subscribe_Cov packets
+## Event Data:
+##      See process_subscribe_cov in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_subscribe_cov%(c: connection,
+                            subscriber_process_identifier: count,
+                            monitored_identifier: count,
+                            monitored_instance_number: count,
+                            issue_confirmed: count,
+                            lifetime: count%);
+
+## ------------------------------------bacnet-atomic-read-file-------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Atomic_Read_File packets
+## Event Data:
+##      See process_atomic_read_file in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_atomic_read_file%(c: connection,
+                               file_object_type: count,
+                               file_instance_number: count,
+                               access_type: string,
+                               file_start: count,
+                               requested_count: count%);
+
+## ------------------------------------bacnet-atomic-write-file------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Atomic_Write_File packets
+## Event Data:
+##      See process_atomic_write_file in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_atomic_write_file%(c: connection,
+                                file_object_type: count,
+                                file_instance_number: count,
+                                access_type: string,
+                                file_start: count,
+                                record_count: count,
+                                data_to_write: string%);
+
+## ------------------------------------bacnet-add-list-element-------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Add_List_Element packets
+## Event Data:
+##      See process_add_list_element in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_add_list_element%(c: connection,
+                               object_type: count,
+                               instance_number: count,
+                               property_identifier: count,
+                               property_array_index: count%);
+
+## -----------------------------------bacnet-remove-list-element-----------------------------------
+## Event Description:
+##      Event is generated for all BACnet Remove_List_Element packets
+## Event Data:
+##      See process_remove_list_element in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_remove_list_element%(c: connection,
+                                  object_type: count,
+                                  instance_number: count,
+                                  property_identifier: count,
+                                  property_array_index: count%);
+
+## --------------------------------------bacnet-create-object--------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Create_Object packets
+## Event Data:
+##      See process_create_object in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_create_object%(c: connection%);
+
+## --------------------------------------bacnet-delete-object--------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Delete_Object packets
+## Event Data:
+##      See process_delete_object in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_delete_object%(c: connection,
+                            object_type: count,
+                            instance_number: count%);
+
+## ---------------------------------bacnet-read-property-multiple----------------------------------
+## Event Description:
+##      Event is generated for all BACnet Read_Property_Multiple packets
+## Event Data:
+##      See process_read_property_multiple in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_read_property_multiple%(c: connection%);
+
+## ---------------------------------bacnet-write-property-multiple---------------------------------
+## Event Description:
+##      Event is generated for all BACnet Write_Property_Multiple packets
+## Event Data:
+##      See process_write_property_multiple in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_write_property_multiple%(c: connection%);
+
+## ------------------------------bacnet-device-communication-control-------------------------------
+## Event Description:
+##      Event is generated for all BACnet Device_Communication_Control packets
+## Event Data:
+##      See process_device_communication_control in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_device_communication_control%(c: connection,
+                                           time_duration: count,
+                                           enable_disable: count,
+                                           password: string%);
+
+## -------------------------------bacnet-confirmed-private-transfer--------------------------------
+## Event Description:
+##      Event is generated for all BACnet Confirmed_Private_Transfer packets
+## Event Data:
+##      See process_confirmed_private_transfer in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_confirmed_private_transfer%(c: connection,
+                                         vendor_id: count,
+                                         service_number: count%);
+
+## ---------------------------------bacnet-confirmed-text-message----------------------------------
+## Event Description:
+##      Event is generated for all BACnet Confirmed_Text_Message packets
+## Event Data:
+##      See process_confirmed_text_message in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_confirmed_text_message%(c: connection,
+                                     object_type: count,
+                                     instance_number: count,
+                                     message_priority: count,
+                                     message: string%);
+
+## -----------------------------------bacnet-reinitialize-device-----------------------------------
+## Event Description:
+##      Event is generated for all BACnet Reinitialize_Device packets
+## Event Data:
+##      See process_reinitialize_device in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_reinitialize_device%(c: connection,
+                                  reinitialized_state: count,
+                                  password: string%);
+
+## -----------------------------------------bacnet-vt-open-----------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Vt_Open packets
+## Event Data:
+##      See process_vt_open in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_vt_open%(c: connection,
+                      vt_class :count,
+                      local_vt_id: count%);
+
+## ----------------------------------------bacnet-vt-close-----------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Vt_Close packets
+## Event Data:
+##      See process_vt_close in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_vt_close%(c: connection,
+                       remote_vt_id: count%);
+
+## -----------------------------------------bacnet-vt-data-----------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Vt_Data packets
+## Event Data:
+##      See process_vt_data in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_vt_data%(c: connection,
+                      vt_session_id: count,
+                      vt_data: string,
+                      vt_flag: count%);
+
+## ---------------------------------------bacnet-read-range----------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Read_Range packets
+## Event Data:
+##      See process_read_range in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_read_range%(c: connection,
+                         object_type: count,
+                         instance_number: count,
+                         property_identifier: count,
+                         property_array_index: count%);
+
+## ----------------------------------bacnet-life-safety-operation----------------------------------
+## Event Description:
+##      Event is generated for all BACnet Life_Safety_Operation packets
+## Event Data:
+##      See process_life_safety_operation in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_life_safety_operation%(c: connection,
+                                    requesting_id: count,
+                                    requesting_source: string,
+                                    request: count,
+                                    object_type: count,
+                                    instance_number: count%);
+
+## ---------------------------------bacnet-subscribe-cov-property----------------------------------
+## Event Description:
+##      Event is generated for all BACnet Subscribe_Cov_Property packets
+## Event Data:
+##      See process_subscribe_cov_property in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_subscribe_cov_property%(c: connection,
+                                     subscriber_process_id: count,
+                                     monitored_identifier_object_type: count,
+                                     monitored_identifier_instance_number: count,
+                                     lifetime: count,
+                                     monitored_property: count,
+                                     cov_increment: count%);
+
+## ----------------------------------bacnet-get-event-information----------------------------------
+## Event Description:
+##      Event is generated for all BACnet Get_Event_Information packets
+## Event Data:
+##      See process_get_event_information in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_get_event_information%(c: connection,
+                                    last_object_type: count,
+                                    last_instance_number: count%);
+
+## ----------------------------------bacnet-get-alarm-summary-ack----------------------------------
+## Event Description:
+##      Event is generated for all BACnet Get_Alarm_Summary_Ack packets
+## Event Data:
+##      See process_get_alarm_summary_ack in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_get_alarm_summary_ack%(c: connection%);
+
+## -------------------------------bacnet-get-enrollment-summary-ack--------------------------------
+## Event Description:
+##      Event is generated for all BACnet Get_Enrollment_Summary_Ack packets
+## Event Data:
+##      See process_get_enrollment_summary_ack in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_get_enrollment_summary_ack%(c: connection%);
+
+## ----------------------------------bacnet-atomic-read-file-ack-----------------------------------
+## Event Description:
+##      Event is generated for all BACnet Atomic_Read_File_Ack packets
+## Event Data:
+##      See process_atomic_read_file_ack in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_atomic_read_file_ack%(c: connection,
+                                   end_of_file: count,
+                                   access_type: string,
+                                   file_start: count,
+                                   record_count: count,
+                                   data_to_read: string%);
+
+## ----------------------------------bacnet-atomic-write-file-ack----------------------------------
+## Event Description:
+##      Event is generated for all BACnet Atomic_Write_File_Ack packets
+## Event Data:
+##      See process_atomic_write_file_ack in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_atomic_write_file_ack%(c: connection,
+                                    access_type: string,
+                                    file_start: count%);
+
+## ------------------------------------bacnet-create-object-ack------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Create_Object_Ack packets
+## Event Data:
+##      See process_create_object_ack in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_create_object_ack%(c: connection,
+                                object_type: count,
+                                instance_number: count%);
+
+## -------------------------------bacnet-read-property-multiple-ack--------------------------------
+## Event Description:
+##      Event is generated for all BACnet Read_Property_Multiple_Ack packets
+## Event Data:
+##      See process_read_property_multiple_ack in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_read_property_multiple_ack%(c: connection%);
+
+## -----------------------------bacnet-confirmed-private-transfer-ack------------------------------
+## Event Description:
+##      Event is generated for all BACnet Confirmed_Private_Transfer_Ack packets
+## Event Data:
+##      See process_confirmed_private_transfer_ack in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_confirmed_private_transfer_ack%(c: connection,
+                                             vendor_id: count,
+                                             service_number: count%);
+
+## ---------------------------------------bacnet-vt-open-ack---------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Vt_Open_Ack packets
+## Event Data:
+##      See process_vt_open_ack in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_vt_open_ack%(c: connection,
+                          remote_session_identifier: count%);
+
+## ---------------------------------------bacnet-vt-data-ack---------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Vt_Data_Ack packets
+## Event Data:
+##      See process_vt_data_ack in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_vt_data_ack%(c: connection,
+                          data_accepted: count,
+                          accepted_count: count%);
+
+## -------------------------------------bacnet-read-range-ack--------------------------------------
+## Event Description:
+##      Event is generated for all BACnet Read_Range_Ack packets
+## Event Data:
+##      See process_read_range_ack in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_read_range_ack%(c: connection,
+                             object_type: count,
+                             instance_number: count,
+                             property_identifier: count,
+                             property_array_index: count,
+                             result_flags: count,
+                             item_count: count%);
+
+## --------------------------------bacnet-get-event-information-ack--------------------------------
+## Event Description:
+##      Event is generated for all BACnet Get_Event_Information_Ack packets
+## Event Data:
+##      See process_get_event_information_ack in bacnet_analyzer.pac
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event bacnet_get_event_information_ack%(c: connection%);
+
+###################################################################################################
+#################################  END OF NOT LOGGED BY DEFAULT  ##################################
+###################################################################################################

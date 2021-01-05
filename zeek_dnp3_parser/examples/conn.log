@@ -1,0 +1,20 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	conn
+#open	2020-09-24-16-04-48
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	service	duration	orig_bytes	resp_bytes	conn_state	local_orig	local_resp	missed_bytes	history	orig_pkts	orig_ip_bytes	resp_pkts	resp_ip_bytes	tunnel_parents
+#types	time	string	addr	port	addr	port	enum	string	interval	count	count	string	bool	bool	count	string	count	count	count	count	set[string]
+1583870028.821541	CtD4Bo2gYCUw1gDnKc	10.10.20.5	55362	10.10.20.8	20000	tcp	dnp3_tcp	1.322860	924	980	OTH	-	-	0	Dd	28	2044	28	2100	-
+1583870011.491939	Cxtt2b28S0nMJYC0Wl	10.10.20.5	55355	10.10.20.8	20000	tcp	dnp3_tcp	0.283408	495	525	OTH	-	-	0	Dd	15	1095	15	1125	-
+1583870020.154149	CHcUhd43qJVu9ilHHd	10.10.20.5	55359	10.10.20.8	20000	tcp	dnp3_tcp	1.323424	924	1390	OTH	-	-	0	Dd	28	2044	30	2590	-
+1583870026.417607	CZTjK23D5380eKnEcf	10.10.20.5	55361	10.10.20.8	20000	tcp	dnp3_tcp	1.323014	924	980	OTH	-	-	0	Dd	28	2044	28	2100	-
+1583870017.750175	CTT2ao3SoLh06Dvx72	10.10.20.5	55358	10.10.20.8	20000	tcp	dnp3_tcp	1.323295	924	980	OTH	-	-	0	Dd	28	2044	28	2100	-
+1583870036.033646	C8dDSj34huPQPfY4m1	10.10.20.5	55370	10.10.20.8	20000	tcp	dnp3_tcp	1.323941	924	1835	OTH	-	-	0	Dd	28	2044	31	3075	-
+1583870015.346263	C41fy82Mp1dAWIzhU8	10.10.20.5	55357	10.10.20.8	20000	tcp	dnp3_tcp	1.323344	924	1181	OTH	-	-	0	Dd	28	2044	29	2341	-
+1583870033.629494	CAQo3y1sl8Q0xRWEnf	10.10.20.5	55366	10.10.20.8	20000	tcp	dnp3_tcp	1.323014	924	980	OTH	-	-	0	Dd	28	2044	28	2100	-
+1583870012.942321	CGWqUj3J9pKmXtdRfc	10.10.20.5	55356	10.10.20.8	20000	tcp	dnp3_tcp	1.323161	924	980	OTH	-	-	0	Dd	28	2044	28	2100	-
+1583870031.225455	C31KLv1yL9uFrZ6guh	10.10.20.5	55363	10.10.20.8	20000	tcp	dnp3_tcp	1.323303	924	1637	OTH	-	-	0	Dd	28	2044	31	2877	-
+1583869914.739725	CW6jf22WbAHuBDH3Oh	10.10.20.5	20000	10.10.20.8	20000	tcp	dnp3_tcp	95.890591	1800	34920	OTH	-	-	0	Dd	97	5680	194	42680	-
+#close	2020-09-24-16-04-48

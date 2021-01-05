@@ -1,0 +1,377 @@
+## events.bif
+##
+## Binpac Ethernet/IP (ENIP) Analyzer - Defines events the analyzer will generate 
+##
+## Author:  Stephen Kleinheider
+## Contact: stephen.kleinheider@inl.gov
+##
+## Copyright (c) 2020 Battelle Energy Alliance, LLC.  All rights reserved.
+
+###################################################################################################
+#######################################  LOGGED BY DEFAULT  #######################################
+###################################################################################################
+
+## ------------------------------------------enip-header-------------------------------------------
+## Event Description:
+##      Event is generated for all Ethernet/IP packets and contains relevant ENIP header data
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - command:              count       -> Ethernet/IP Command (see enip_commands in consts.zeek)
+##      - length:               count       -> Length of ENIP data following header
+##      - session_handle:       count       -> Session Identifier (session handle)
+##      - status:               count       -> Status Code (see enip_statuses in consts.zeek) 
+##      - sender_context        string      -> Sender Context (used to match request and responses)
+##      - options:              count       -> Options flags
+## Default Output:
+##      Writes to log file enip.log
+## ------------------------------------------------------------------------------------------------
+event enip_header%(c: connection, 
+                   command: count, 
+                   length: count, 
+                   session_handle: count, 
+                   status: count, 
+                   sender_context: string, 
+                   options: count%);
+
+## -------------------------------------------cip-header-------------------------------------------
+## Event Description:
+##      Event is generated for all CIP packets and contains relevant CIP header data
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - cip_sequence_count:   count       -> CIP sequence number for transport (connected data only)
+##      - service:              count       -> CIP Service Type (see cip_services in consts.zeek)
+##      - response:             bool        -> Request or Response boolean
+##      - status:               count       -> CIP Status Code (see cip_statuses in consts.zeek) 
+##      - class_id              count       -> CIP Request Path - Class ID
+##      - instance_id           count       -> CIP Request Path - Instance ID
+##      - attribute_id          count       -> CIP Request Path - Attribute ID
+##      - data_id               string      -> CIP Request Path - Data ID
+##      - other_id              string      -> CIP Request Path - Other ID
+## Default Output:
+##      Writes to log file cip.log
+## ------------------------------------------------------------------------------------------------
+event cip_header%(c: connection, 
+                  cip_sequence_count: count, 
+                  service: count, 
+                  response: bool, 
+                  status: count,
+                  class_id: count,
+                  instance_id: count,
+                  attribute_id: count,
+                  data_id: string,
+                  other_id: string%);
+
+## ------------------------------------------cip-identity------------------------------------------
+## Event Description:
+##      Event is generated for packets that include a CIP_Identity in a ListServices response
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - encapsulation_version:count       -> Encapsulation Protocol Version supported
+##      - socket_address:       count       -> Socket Address IP Address
+##      - socket_port:          count       -> Socket Address Port
+##      - vendor_id:            count       -> Vendor ID (see cip_vendors in consts.zeek)
+##      - device_type:          count       -> Device type (see cip_device_types in consts.zeek)
+##      - product_code:         count       -> Product code assigned to device
+##      - revision_major:       count       -> Device revision (major)
+##      - revision_minor:       count       -> Device revision (minor)
+##      - status:               count       -> Current status of device (see cip_statuses in consts.zeek)
+##      - serial_number:        count       -> Serial number of device
+##      - product_name:         string      -> Human readable description of device
+##      - state:                count       -> Current state of the device
+## Default Output:
+##      Writes to log file cip_identity.log
+## ------------------------------------------------------------------------------------------------
+event cip_identity%(c: connection, 
+                    encapsulation_version: count, 
+                    socket_address: count, 
+                    socket_port: count, 
+                    vendor_id: count,
+                    device_type: count, 
+                    product_code: count, 
+                    revision_major: count, 
+                    revision_minor: count, 
+                    status: count, 
+                    serial_number: count, 
+                    product_name: string, 
+                    state: count%);
+
+## ---------------------------------------------cip-io---------------------------------------------
+## Event Description:
+##      Event is generated for all CIP IO packets
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - connection_identifier:count       -> Connection Identifier
+##      - sequence_number:      count       -> Sequence Number within Connection
+##      - data_length:          count       -> Length of data field
+##      - data:                 count       -> CIP IO data
+## Default Output:
+##      Writes to log file cip_io.log
+## ------------------------------------------------------------------------------------------------
+event cip_io%(c: connection, 
+              connection_identifier: count, 
+              sequence_number: count, 
+              data_length: count, 
+              data: string%);
+
+###################################################################################################
+###################################  END OF LOGGED BY DEFAULT  ####################################
+###################################################################################################
+
+
+###################################################################################################
+#####################################  NOT LOGGED BY DEFAULT  #####################################
+###################################################################################################
+
+## ----------------------------------------register-session----------------------------------------
+## Event Description:
+##      Event is generated for ENIP register_session commands
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - protocol_version:     count       -> Version of Protocol (currently 1)
+##      - options_flags:        count       -> Options Flag (no public options defined)
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event register_session%(c: connection, 
+                        protocol_version: count, 
+                        options_flags: count%);
+
+## ------------------------------------------cip-security------------------------------------------
+## Event Description:
+##      Event is generated for packets that include a CIP_Security_Item in a ListServices response
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - security_profile:     count       -> CIP Security Profiles supported
+##      - cip_security_state:   count       -> Current state of CIP Security Object
+##      - enip_security_state:  count       -> Current state of ENIP Security Object
+##      - iana_port_state:      count       -> Current state for ENIP related ports
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event cip_security%(c: connection, 
+                    security_profile: count, 
+                    cip_security_state: count, 
+                    enip_security_state: count, 
+                    iana_port_state: count%);
+                    
+## ----------------------------------------enip-capability-----------------------------------------
+## Event Description:
+##      Event is generated for packets that include a ENIP_Capability_Item in a ListServices response
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - enip_profile:         count       -> Features supported for ENIP transport
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event enip_capability%(c: connection, 
+                       enip_profile: count%);
+
+## ------------------------------------------enip-service------------------------------------------
+## Event Description:
+##      Event is generated for packets that include a Service_Item in a ListServices response
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - protocol_version:     count       -> Version of Protocol (currently 1)
+##      - capability_flags:     count       -> Capability Flags
+##      - service_name:         string      -> Name of Service
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event enip_service%(c: connection, 
+                    protocol_version: count, 
+                    capability_flags: count, 
+                    service_name: string%);
+
+## ---------------------------------------connected-address----------------------------------------
+## Event Description:
+##      Event is generated for packets that include a Connected_Address_Item
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - connection_id:        count       -> Connection Identifier
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event connected_address%(c: connection, 
+                         connection_id: count%);
+
+## ---------------------------------------sequenced-address----------------------------------------
+## Event Description:
+##      Event is generated for packets that include a Sequenced_Address_Item
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - connection_id:        count       -> Connection Identifier
+##      - encap_sequence_num:   count       -> Encapsulation Sequence Number
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event sequenced_address%(c: connection, 
+                         connection_id: count, 
+                         encap_sequence_num: count%);
+
+## ------------------------------------unconnected-message-dtls------------------------------------
+## Event Description:
+##      Event is generated for packets that include a Unconnected_Message_DTLS
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - unconn_message_type:  count       -> Type of unconnected message
+##      - transaction_number:   count       -> Transaction number for for request/reply matching
+##      - status:               count       -> Status (see enip_statuses in consts.zeek)
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event unconnected_message_dtls%(c: connection, 
+                                unconn_message_type: count, 
+                                transaction_number: count, 
+                                status: count%);
+
+## --------------------------------------socket-address-info---------------------------------------
+## Event Description:
+##      Event is generated for packets that include a Socket_Address_Info_Item
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - socket_address:       count       -> Socket Address IP address
+##      - socket_port:          count       -> Socket Address Port Number
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event socket_address_info%(c: connection, 
+                           socket_address: count, 
+                           socket_port: count%);
+
+## -----------------------------------get-attribute-all-response-----------------------------------
+## Event Description:
+##      Event is generated for CIP service Get_Attributes_All_Response
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - attribute_data:       string      -> Attribute data based on instance/class
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event get_attribute_all_response%(c: connection, 
+                                  attribute_data: string%);
+
+## -----------------------------------set-attribute-all-request------------------------------------
+## Event Description:
+##      Event is generated for CIP service Set_Attributes_All_Request
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - attribute_data:       string      -> Attribute data based on instance/class
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event set_attribute_all_request%(c: connection, 
+                                 attribute_data: string%);
+
+## -----------------------------------get-attribute-list-request-----------------------------------
+## Event Description:
+##      Event is generated for CIP service Get_Attribute_List_Request
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - attribute_count:      count       -> Number of attribute IDs in list
+##      - attributes:           string      -> List of attribute IDs
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event get_attribute_list_request%(c: connection, 
+                                  attribute_count: count, 
+                                  attributes: string%);
+
+## ----------------------------------get-attribute-list-response-----------------------------------
+## Event Description:
+##      Event is generated for CIP service Get_Attribute_List_Response
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - attribute_count:      count       -> Number of attribute structs
+##      - attributes:           string      -> Struct of attribute responses
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event get_attribute_list_response%(c: connection, 
+                                   attribute_count: count, 
+                                   attributes: string%);
+
+## -----------------------------------set-attribute-list-request-----------------------------------
+## Event Description:
+##      Event is generated for CIP service Set_Attribute_List_Request
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - attribute_count:      count       -> Number of attribute structs
+##      - attributes:           string      -> Struct of attribute responses
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event set_attribute_list_request%(c: connection, 
+                                  attribute_count: count, 
+                                  attributes: string%);
+
+## ----------------------------------set-attribute-list-response-----------------------------------
+## Event Description:
+##      Event is generated for CIP service Set_Attribute_List_Response
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - attribute_count:      count       -> Number of attribute structs
+##      - attributes:           string      -> Struct of attribute responses
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event set_attribute_list_response%(c: connection, 
+                                   attribute_count: count, 
+                                   attributes: string%);
+
+## ------------------------------------multiple-service-request------------------------------------
+## Event Description:
+##      Event is generated for CIP service Multiple_Service_Packet_Request 
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - service_count:        count       -> Number of services included in command
+##      - services:             string      -> Comma delimited list of services included
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event multiple_service_request%(c: connection, 
+                                service_count: count, 
+                                services: string%);
+
+## -----------------------------------multiple-service-response------------------------------------
+## Event Description:
+##      Event is generated for CIP service Multiple_Service_Packet_Response 
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - service_count:        count       -> Number of services included in command
+##      - services:             string      -> Comma delimited list of services included
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event multiple_service_response%(c: connection, 
+                                 service_count: count, 
+                                 services: string%);
+
+## ---------------------------------get-attribute-single-response----------------------------------
+## Event Description:
+##      Event is generated for CIP service Get_Attribute_Single_Response 
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - attribute_value:      string      -> Attribute data based on instance/class
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event get_attribute_single_response%(c: connection, 
+                                     attribute_value: string%);
+
+## ----------------------------------set-attribute-single-request----------------------------------
+## Event Description:
+##      Event is generated for CIP service Set_Attribute_Single_Request 
+## Event Data:
+##      - c:                    connection  -> Zeek Connection Struct
+##      - attribute_id:         count       -> Identifies the attribute
+##      - attribute_value:      string      -> Attribute data based on instance/class
+## Default Output:
+##      No defined log in main.zeek by default
+## ------------------------------------------------------------------------------------------------
+event set_attribute_single_request%(c: connection, 
+                                    attribute_id: count, 
+                                    attribute_value: string%);
+
+###################################################################################################
+#################################  END OF NOT LOGGED BY DEFAULT  ##################################
+###################################################################################################

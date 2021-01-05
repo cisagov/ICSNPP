@@ -1,0 +1,13 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	mask_write_register
+#open	2020-09-24-16-14-29
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	unit_id	func	network_direction	address	and_mask	or_mask
+#types	time	string	addr	port	addr	port	count	string	string	count	count	count
+1595660608.240903	C9ul7r2CofpGRL3Buh	127.0.0.1	47785	127.0.0.1	502	4	MASK_WRITE_REGISTER	request	10	57005	0
+1595660608.240958	C9ul7r2CofpGRL3Buh	127.0.0.1	47785	127.0.0.1	502	4	MASK_WRITE_REGISTER	response	10	57005	0
+1595660608.241027	C9ul7r2CofpGRL3Buh	127.0.0.1	47785	127.0.0.1	502	4	MASK_WRITE_REGISTER	request	10	65535	57005
+1595660608.241074	C9ul7r2CofpGRL3Buh	127.0.0.1	47785	127.0.0.1	502	4	MASK_WRITE_REGISTER	response	10	65535	57005
+#close	2020-09-24-16-14-29
