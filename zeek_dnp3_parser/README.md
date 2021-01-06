@@ -4,7 +4,7 @@
 
 This is an extension of the DNP3 protocol parser in the Zeek NSM platform.
 
-This is an updated version of the DNP3 protocol parser that comes with a base/default Zeek installation. In a base/default Zeek installation, the only DNP3 log file that gets logged is the dnp3.log file which provides a very high level overview of the DNP3 traffic we can see, but doesn't provide a lot of detailed. In this updated parser, the dnp3.log file from the original remains, but there are two added log files to give more information about the DNP3 traffic.
+This is an updated version of the DNP3 protocol parser that comes with a base/default Zeek installation. In a base/default Zeek installation, the only DNP3 log information that gets logged is the dnp3.log file which provides a very high level overview of the DNP3 traffic we can see, but doesn't provide a lot of detail. In this updated parser, the dnp3.log file from the original remains, but there are two added log files to give more information about the DNP3 traffic.
 
 There are currently 3 Zeek log files that can be output by this parser. These log files are defined in the [main.zeek](main.zeek) file.
 * dnp3.log
@@ -14,6 +14,9 @@ There are currently 3 Zeek log files that can be output by this parser. These lo
 For additional information on these log files, see the *Logging Capabilities* section below.
 
 ## Installation
+
+**Note: These installation updates will soon be changed to prevent overwriting original Zeek scripts**
+At this time we do not recommend following these installation updates on production systems until these updates have been made.
 
 To install these updates, all you will need to do is overwrite the files in the DNP3 scripts directory of your Zeek installation. 
 
@@ -30,6 +33,8 @@ Example Linux Installation:
 git clone https://github.com/cisagov/icsnpp.git
 cd icsnpp/zeek_dnp3_parser/
 zeek_install_dir=$(dirname $(dirname `which zeek`)) # Get base Zeek directory
+sudo mv $zeek_install_dir/share/zeek/base/protocols/dnp3/main.zeek $zeek_install_dir/share/zeek/base/protocols/dnp3/main.zeek.old
+sudo mv $zeek_install_dir/share/zeek/base/protocols/dnp3/consts.zeek $zeek_install_dir/share/zeek/base/protocols/dnp3/consts.zeek.old
 sudo cp *.zeek $zeek_install_dir/share/zeek/base/protocols/dnp3/ # Copy new main.zeek and consts.zeek files into DNP3 scripts directory
 ```
 

@@ -9,7 +9,7 @@ This parser has been developed as a Zeek plugin that can be added to existing Ze
 There are currently 3 Zeek log files that can be output by this parser. These log files are defined in the [scripts/main.zeek](scripts/main.zeek) file.
 * bacnet.log
 * bacnet_discovery.log
-* bacnet_property.log. 
+* bacnet_property.log
 
 For additional information on these log files, see the *Logging Capabilities* section below.
 
@@ -48,7 +48,7 @@ tar xvzf build/Zeek_Bacnet.tgz -C $ZEEK_PLUGIN_PATH
 
 #### Overview
 
-This log captures BACnet header information for every BACnet/IP packet and logs them to **bacnet.log**.
+This log captures BACnet header information for every BACnet/IP packet and logs it to **bacnet.log**.
 
 #### Fields Captured
 
@@ -57,11 +57,11 @@ This log captures BACnet header information for every BACnet/IP packet and logs 
 | ts            | time      | Timestamp                                                 |
 | uid           | string    | Unique ID for this connection                             |
 | id            | conn_id   | Default Zeek connection info (IP addresses, ports)        |
-| bvlc_function | string    | BVLC Function                                             |
-| pdu_type      | string    | APDU Service Type                                         |
-| pdu_service   | string    | APDU Service Choice                                       |
+| bvlc_function | string    | BVLC function                                             |
+| pdu_type      | string    | APDU service type                                         |
+| pdu_service   | string    | APDU service choice                                       |
 | invoke_id     | count     | Unique ID for all outstanding confirmed request/ACK APDUs |
-| result_code   | string    | Error Code or Reject/Abort Reason                         |
+| result_code   | string    | Error code or reject/abort reason                         |
 
 ### Discovery Log (bacnet_discovery.log)
 
@@ -69,7 +69,7 @@ This log captures BACnet header information for every BACnet/IP packet and logs 
 
 This log captures important fields for Who-Is, I-Am, Who-Has, and I-Have messages and logs them to **bacnet_discovery.log**.
 
-These messages contain a lot of important discovery information and provide a lot of important information to fingerprint a BACnet network and basic information about the BACnet devices within the network.
+These messages contain a lot of important discovery information via basic information about the BACnet devices within the network that could prove useful for fingerprinting a BACnet network.
 
 #### Fields Captured
 
@@ -78,10 +78,10 @@ These messages contain a lot of important discovery information and provide a lo
 | ts                | time      | Timestamp                                                       |
 | uid               | string    | Unique ID for this connection                                   |
 | id                | conn_id   | Default Zeek connection info (IP addresses, ports)              |
-| pdu_service       | string    | APDU Service Choice (who-is, i-am, who-has, or i-have)          |
-| object_type       | string    | BACnet Device's Object Type                                     |
-| instance_number   | count     | BACnet Device's Instance Number                                 |
-| vendor            | string    | BACnet Device's Vendor Name                                     |
+| pdu_service       | string    | APDU service choice (who-is, i-am, who-has, or i-have)          |
+| object_type       | string    | BACnet device's object type                                     |
+| instance_number   | count     | BACnet device's instance number                                 |
+| vendor            | string    | BACnet device's vendor name                                     |
 | range             | string    | Range of instance numbers                                       |
 | object_name       | string    | Object name searching for (who-has) or responding with (i-have) |
 
@@ -91,7 +91,7 @@ These messages contain a lot of important discovery information and provide a lo
 
 This log captures important variables for Read-Property-Request, Read-Property-ACK, and Write-Property-Request messages and logs them to **bacnet_property.log**.
 
-Read and Write Property Requests are the most common type of BACnet message and can contain extremely important information when looking for potentially malicious or bad traffic.
+Read and Write Property Requests are the most common type of BACnet message and can contain extremely important information when looking for potentially malicious traffic.
 
 #### Fields Captured
 
@@ -100,12 +100,12 @@ Read and Write Property Requests are the most common type of BACnet message and 
 | ts                | time      | Timestamp                                                 |
 | uid               | string    | Unique ID for this connection                             |
 | id                | conn_id   | Default Zeek connection info (IP addresses, ports)        |
-| pdu_service       | string    | APDU Service Choice (read or write property services)     |
-| object_type       | string    | BACnet Device's Object Type                               |
-| instance_number   | count     | BACnet Device's Instance Number                           |
-| property          | string    | Property Type                                             |
-| array_index       | count     | Property Array Index                                      |
-| value             | string    | Value of Property                                         |
+| pdu_service       | string    | APDU service choice (read or write property services)     |
+| object_type       | string    | BACnet device's object type                               |
+| instance_number   | count     | BACnet device's instance number                           |
+| property          | string    | Property type                                             |
+| array_index       | count     | Property array index                                      |
+| value             | string    | Value of property                                         |
 
 ## Testing
 

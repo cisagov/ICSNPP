@@ -60,12 +60,12 @@ While the session_handle and sender_context fields can be useful in correlating 
 | ts                | time      | Timestamp                                                 |
 | uid               | string    | Unique ID for this connection                             |
 | id                | conn_id   | Default Zeek connection info (IP addresses, ports)        |
-| enip_command      | string    | Ethernet/IP Command                                       |
+| enip_command      | string    | Ethernet/IP command                                       |
 | length            | count     | Length of ENIP data following header                      |
-| session_handle    | string    | Session Identifier                                        |
-| enip_status       | string    | Ethernet/IP Status Code                                   |
-| sender_context    | string    | Sender Context                                            |
-| options           | string    | Options Flags                                             |
+| session_handle    | string    | Session identifier                                        |
+| enip_status       | string    | Ethernet/IP status code                                   |
+| sender_context    | string    | Sender context                                            |
+| options           | string    | Options flags                                             |
 
 ### CIP Header Log (cip.log)
 
@@ -83,15 +83,15 @@ The vast majority of Ethernet/IP traffic is used to send encapsulated CIP traffi
 | uid                   | string    | Unique ID for this connection                             |
 | id                    | conn_id   | Default Zeek connection info (IP addresses, ports)        |
 | cip_sequence_count    | count     | CIP sequence number                                       |
-| direction             | string    | Request or Response                                       |
+| direction             | string    | Request or response                                       |
 | cip_service           | string    | CIP service type                                          |
 | cip_status            | string    | CIP status code                                           |
-| class_id              | string    | CIP Request Path - Class ID                               |
-| class_name            | string    | CIP Request Path - Class Name                             |
-| instance_id           | string    | CIP Request Path - Instance ID                            |
-| attribute_id          | string    | CIP Request Path - Attribute ID                           |
-| data_id               | string    | CIP Request Path - Data ID                                |
-| other_id              | string    | CIP Request Path - Other ID                               |
+| class_id              | string    | CIP request path - class ID                               |
+| class_name            | string    | CIP request path - class name                             |
+| instance_id           | string    | CIP request path - instance ID                            |
+| attribute_id          | string    | CIP request path - attribute ID                           |
+| data_id               | string    | CIP request path - data ID                                |
+| other_id              | string    | CIP request path - other ID                               |
 
 ### CIP I/O Log (cip_io.log)
 
@@ -108,8 +108,8 @@ CIP I/O messages are used to send data quickly between ICS devices and do not fo
 | ts                    | time      | Timestamp                                                 |
 | uid                   | string    | Unique ID for this connection                             |
 | id                    | conn_id   | Default Zeek connection info (IP addresses, ports)        |
-| connection_id         | string    | Connection Identifier                                     |
-| sequence_number       | count     | Sequence Number within Connection                         |
+| connection_id         | string    | Connection identifier                                     |
+| sequence_number       | count     | Sequence number within connection                         |
 | data_length           | count     | Length of data in io_data field                           |
 | io_data               | string    | CIP IO data                                               |
 
@@ -132,7 +132,7 @@ CIP Identity objects are returned via the Ethernet/IP "List_Identity" command an
 | socket_address        | addr      | Socket address IP address                             |
 | socket_port           | count     | Socket address port number                            |
 | vendor_id             | count     | Vendor ID                                             |
-| vendor_name           | string    | Name of Vendor                                        |
+| vendor_name           | string    | Name of vendor                                        |
 | device_type_id        | count     | Device type ID                                        |
 | device_type_name      | string    | Name of device type                                   |
 | product_code          | count     | Product code assigned to device                       |

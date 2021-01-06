@@ -4,7 +4,7 @@
 
 This is an extension of the Modbus protocol parser in the Zeek NSM platform.
 
-This is an updated version of the Modbus protocol parser that comes with a base/default Zeek installation. In a base/default Zeek installation, the only Modbus log file that gets logged is the modbus.log file which provides a very high level overview of the Modbus traffic we can see, but doesn't provide a lot of detailed. In this updated parser, the modbus.log file from the original remains, but there are three added log files to give more information about the Modbus traffic.
+This is an updated version of the Modbus protocol parser that comes with a base/default Zeek installation. In a base/default Zeek installation, the only Modbus information that gets logged is the modbus.log file which provides a very high level overview of the Modbus traffic we can see, but doesn't provide a lot of detailed. In this updated parser, the modbus.log file from the original remains, but there are three added log files to give more information about the Modbus traffic.
 
 There are currently 4 Zeek log files that can be output by this script.  These log files are defined in the [main.zeek](main.zeek) file.  Output log files include the following: 
 * modbus.log
@@ -15,6 +15,9 @@ There are currently 4 Zeek log files that can be output by this script.  These l
 For additional information on these log files, see the *Logging Capabilities* section below.
 
 ## Installation
+
+**Note: These installation updates will soon be changed to prevent overwriting original Zeek scripts**
+At this time we do not recommend following these installation updates on production systems until these updates have been made.
 
 To install these updates, all you will need to do is overwrite the main.zeek file with in the Modbus scripts directory of your Zeek installation with the main.zeek file in this folder. 
 
@@ -31,6 +34,7 @@ Example Linux Installation:
 git clone https://github.com/cisagov/icsnpp.git
 cd icsnpp/zeek_modbus_parser/
 zeek_install_dir=$(dirname $(dirname `which zeek`)) # Get base Zeek directory
+sudo mv $zeek_install_dir/share/zeek/base/protocols/modbus/main.zeek $zeek_install_dir/share/zeek/base/protocols/modbus/main.zeek.old
 sudo cp main.zeek $zeek_install_dir/share/zeek/base/protocols/modbus/ # Copy new main.zeek file into Modbus scripts directory
 ```
 
