@@ -9,14 +9,14 @@ This is an updated version of the Modbus protocol parser that comes with a base/
 There are currently 4 Zeek log files that can be output by this script.  These log files are defined in the [main.zeek](main.zeek) file.  Output log files include the following: 
 * modbus.log
 * modbus_detailed.log
-* mask_write_register.log
-* read_write_multiple_registers.log
+* modbus_mask_write_register.log
+* modbus_read_write_multiple_registers.log
 
 For additional information on these log files, see the *Logging Capabilities* section below.
 
 ## Installation
 
-**Note: These installation updates will soon be changed to prevent overwriting original Zeek scripts**
+**Note: These installation updates will soon be changed to prevent overwriting original Zeek scripts**  
 At this time we do not recommend following these installation updates on production systems until these updates have been made.
 
 To install these updates, all you will need to do is overwrite the main.zeek file with in the Modbus scripts directory of your Zeek installation with the main.zeek file in this folder. 
@@ -84,11 +84,11 @@ If an exception arises in the Modbus data the exception code will be logged in t
 | values            | string    | Value(s) or Coils, discrete_inputs, or registers read/written to  |
 
 
-### Mask Write Register Log (mask_write_register.log)
+### Mask Write Register Log (modbus_mask_write_register.log)
 
 #### Overview
 
-This log captures the fields of a Modbus *mask_write_register* function (function code 0x16) and logs them to **modbus_write_register.log**.
+This log captures the fields of a Modbus *mask_write_register* function (function code 0x16) and logs them to **modbus_mask_write_register.log**.
 
 #### Fields Captured
 
@@ -104,11 +104,11 @@ This log captures the fields of a Modbus *mask_write_register* function (functio
 | and_mask          | count     | Boolean 'and' mask to apply to the target register    |
 | or_mask           | count     | Boolean 'or' mask to apply to the target register     |
 
-### Read Write Multiple Registers Log (read_write_multiple_registers.log)
+### Read Write Multiple Registers Log (modbus_read_write_multiple_registers.log)
 
 #### Overview
 
-This log captures the fields of a Modbus *read/write multiple registers* function (function code 0x17) and logs them to **read_write_multiple_registers.log**.
+This log captures the fields of a Modbus *read/write multiple registers* function (function code 0x17) and logs them to **modbus_read_write_multiple_registers.log**.
 
 #### Fields Captured
 

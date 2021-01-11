@@ -186,11 +186,11 @@ event zeek_init() &priority=5 {
 
     Log::create_stream(Modbus::LOG_MASK_WRITE_REGISTER, [$columns=Mask_Write_Register,
                                                          $ev=log_mask_write_register,
-                                                         $path="mask_write_register"]);
+                                                         $path="modbus_mask_write_register"]);
 
     Log::create_stream(Modbus::LOG_READ_WRITE_MULTIPLE_REGISTERS, [$columns=Read_Write_Multiple_Registers, 
                                                                    $ev=log_read_write_multiple_registers,
-                                                                   $path="read_write_multiple_registers"]);
+                                                                   $path="modbus_read_write_multiple_registers"]);
 
     Analyzer::register_for_ports(Analyzer::ANALYZER_MODBUS, ports);
 }
