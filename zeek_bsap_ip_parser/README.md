@@ -1,12 +1,12 @@
-# zeek_bsap_ip 
+# BSAP over IP
 
 ## Overview
 
-This is a BSAP over IP parser developed for the Zeek NSM platform. 
+This is a BSAP (Bristol Standard Asynchronous Protocol) over IP parser developed for the Zeek NSM platform. 
 
 This parser has been developed as a Zeek plugin that can be added to existing Zeek installations and log important fields and variables within the BSAP protocol. This parser was developed to capture the most commonly used functions in the field. The functions within the [scripts/main.zeek](scripts/main.zeek) and [src/events.bif](src/events.bif) file should be a good guide on how to add new logging functionality.
 
-There are currently 3 Zeek log files that can be produced by this parser. These log files are defined in the [scripts/main.zeek](scripts/main.zeek) file.
+There are currently 3 Zeek log files that can be produced by this parser. These log files are defined in [scripts/main.zeek](scripts/main.zeek).
 * bsap_ip_header.log
 * bsap_ip_rdb.log
 * bsap_ip_unknown.log 

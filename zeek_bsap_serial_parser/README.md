@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is an BSAP Serial to Ethernet parser developed for the Zeek NSM platform. 
+This is an BSAP (Bristol Standard Asynchronous Protocol) Serial to Ethernet parser developed for the Zeek NSM platform. 
 
 This parser requires a serial to Ethernet converter converting serial BSAP to Ethernet using either port 1234 or 1235 over UDP. 
 

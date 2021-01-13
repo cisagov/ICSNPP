@@ -9,6 +9,10 @@ Full ICS Protocol Parsers:
     * Full Zeek protocol parser for BACnet
 * [Ethernet/IP and CIP](zeek_enip_parser): 
     * Full Zeek protocol parser for Ethernet/IP and CIP
+* [BSAP over IP](zeek_bsap_ip_parser)
+    * Full Zeek protocol parser for BSAP (Bristol Standard Asynchronous Protocol) over IP
+* [BSAP Serial->Ethernet](zeek_bsap_serial_parser)
+    * Full Zeek protocol parser for BSAP (Bristol Standard Asynchronous Protocol) over Serial->Ethernet  
 
 Updates to Zeek ICS Protocol Parsers:
 * [DNP3](zeek_dnp3_parser)
