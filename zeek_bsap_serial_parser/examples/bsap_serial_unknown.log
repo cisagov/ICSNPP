@@ -1,0 +1,27 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	bsap_serial_unknown
+#open	2021-01-12-16-22-37
+#fields	ts	uid	data
+#types	time	string	string
+1600962213.570677	CXfyCw4lBZHjxfJHda	\x00\x04\x01@\x0f\x01@GV.AS2.\x00\x10\x03\x09\x89
+1600962213.697736	CXfyCw4lBZHjxfJHda	\x00\x00\x01\x00\x00\x8cB\x10\x03\x84\xb7
+1600962215.877919	CXfyCw4lBZHjxfJHda	\x00\x00\x01\x82\xdf\x82\xbe\x10\x03\x0d]
+1600962275.171433	CXfyCw4lBZHjxfJHda	\x00\x04\x01@\x0f\x01@GV.AS2.\x00\x10\x03x\x1b
+1600962275.294115	CXfyCw4lBZHjxfJHda	\x00\x00\x01\x00\x00\x8cB\x10\x03|\x96
+1600962277.705194	CXfyCw4lBZHjxfJHda	\x00\x00\x01\x00\x00\x8cB\x10\x03|4
+1600962336.698533	CXfyCw4lBZHjxfJHda	\x00\x04\x01@\x0f\x01@GV.AS2.\x00\x10\x03U^
+1600962336.820217	CXfyCw4lBZHjxfJHda	\x00\x00\x01\x00\x00pB\x10\x03\x7fm
+1600962339.475164	CXfyCw4lBZHjxfJHda	\x00\x00\x01\x00\x10\x03A,
+1600962398.689908	CXfyCw4lBZHjxfJHda	\x00\x04\x01@\x0f\x01@GV.AS2.\x00\x10\x03\x8b7
+1600962398.817555	CXfyCw4lBZHjxfJHda	\x00\x00\x01\x00\x00pB\x10\x03\x1b\xfc
+1600962401.741503	CXfyCw4lBZHjxfJHda	\x00\x00\x01\x00\x10\x03\xac/
+1600962460.308440	CXfyCw4lBZHjxfJHda	\x00\x04\x01@\x0f\x01@GV.AS2.\x00\x10\x03\xa0/
+1600962460.435225	CXfyCw4lBZHjxfJHda	\x00\x00\x01\x00\x00pB\x10\x03\xdap
+1600962463.572171	CXfyCw4lBZHjxfJHda	\x00\x00\x01 \xd2\x82\xbe\x10\x03\xe6\x8c
+1600962521.875767	CXfyCw4lBZHjxfJHda	\x00\x04\x01@\x0f\x01@GV.AS2.\x00\x10\x03\xd1\xbd
+1600962522.000882	CXfyCw4lBZHjxfJHda	\x00\x00\x01\x00\x00pB\x10\x03"Q
+1600962525.376721	CXfyCw4lBZHjxfJHda	\x00\x00\x01\x82\xdf\x82\xbe\x10\x03\xbb\x81
+#close	2021-01-12-16-22-37

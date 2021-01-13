@@ -1,0 +1,42 @@
+## events.bif
+##
+## Binpac BSAP_IP Protocol Analyzer - Defines events the analyzer will generate 
+##
+## Author:  Devin Vollmer
+## Contact: devin.vollmer@inl.gov
+##
+## Copyright (c) 2020 Battelle Energy Alliance, LLC.  All rights reserved.
+
+event bsapip_header%(c: connection,
+                     is_orig: bool,
+                     id: count,
+                     Num_Messages: count,
+                     Message_Func: count%);
+
+event bsap_request_header%(c: connection,
+                           response_seq: count,
+                           message_seq: count,
+                           data_length: count,
+                           header_size: count,
+                           sequence: count,
+                           app_func_code: count%);
+
+event bsapip_rdb_request%(c: connection,
+                          response_seq: count,
+                          message_seq: count,
+                          node_status: count,
+                          func_code: count,
+                          data: string%);
+
+event bsapip_rdb_response%(c: connection,
+                           message_seq: count,
+                           response_seq: count,
+                           data_length: count,
+                           header_size: count,
+                           sequence: count,
+                           func_code: count,
+                           resp_status: count,
+                           data: string%);
+
+event bsapip_unknown%(c: connection,
+                      data: string%);

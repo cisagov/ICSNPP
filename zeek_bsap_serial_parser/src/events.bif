@@ -1,0 +1,44 @@
+## events.bif
+##
+## Binpac BSAP_SERIAL Protocol Analyzer - Defines events the analyzer will generate 
+##
+## Author:  Devin Vollmer
+## Contact: devin.vollmer@inl.gov
+##
+## Copyright (c) 2020 Battelle Energy Alliance, LLC.  All rights reserved.
+
+event bsap_rdb_request%(c: connection, 
+                        func_code: count, 
+                        data: string%);
+
+event bsap_rdb_response%(c: connection,
+                         func_code: count, 
+                         data: string%);
+
+event bsap_local_header%(c: connection, 
+                         SER: count,
+                         DFUN: count,
+                         SEQ: count,
+                         SFUN: count,
+                         NSB: count%);
+
+event bsap_global_header%(c: connection,
+                          SER: count,
+                          DADD: count,
+                          SADD: count,
+                          CTL: count,
+                          DFUN: count,
+                          SEQ: count, 
+                          SFUN: count,
+                          NSB: count%);
+
+event bsap_rdb_extension%(c: connection,
+                          DFUN: count,
+                          SEQ: count,
+                          SFUN: count,
+                          NSB: count,
+                          XFUN: count,
+                          data: string%);
+
+event bsap_unknown%(c: connection,
+                    data: string%);

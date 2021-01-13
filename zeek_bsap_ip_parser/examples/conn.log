@@ -1,0 +1,16 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	conn
+#open	2021-01-12-15-54-47
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	service	duration	orig_bytes	resp_bytes	conn_state	local_orig	local_resp	missed_bytes	history	orig_pkts	orig_ip_bytes	resp_pkts	resp_ip_bytes	tunnel_parents
+#types	time	string	addr	port	addr	port	enum	string	interval	count	count	string	bool	bool	count	string	count	count	count	count	set[string]
+1595523228.275860	CB5ZBr47YuW7qCIGJf	fe80::c1d:332b:c4f1:83ba	5353	ff02::fb	5353	udp	-	-	-	-	OTH	-	-	0	C	0	0	0	0	-
+1595523228.275970	CoTzkC3zgwWfJwvnug	192.168.5.10	5353	224.0.0.251	5353	udp	-	-	-	-	OTH	-	-	0	C	0	0	0	0	-
+1595523292.279568	CAlmPf1T72ldIvJNtd	fe80::c1d:332b:c4f1:83ba	5353	ff02::fb	5353	udp	-	-	-	-	OTH	-	-	0	C	0	0	0	0	-
+1595523292.279721	C0ZlEL3IJVuxHg3g8	192.168.5.10	5353	224.0.0.251	5353	udp	-	-	-	-	OTH	-	-	0	C	0	0	0	0	-
+1595523420.358840	CpN94Y2QshmO9OkKAc	fe80::c1d:332b:c4f1:83ba	5353	ff02::fb	5353	udp	-	-	-	-	OTH	-	-	0	C	0	0	0	0	-
+1595523420.359160	CfFcTJ182nGVC6LP8k	192.168.5.10	5353	224.0.0.251	5353	udp	-	-	-	-	OTH	-	-	0	C	0	0	0	0	-
+1595523235.701693	CYFA3deGKz4TuRcV8	192.168.5.211	1234	192.168.5.210	1234	udp	-	403.908246	189163	119890	SF	-	-	0	Dd	3365	283383	1682	166986	-
+#close	2021-01-12-15-54-47
