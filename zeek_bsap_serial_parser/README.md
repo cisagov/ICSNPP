@@ -4,20 +4,17 @@
 
 This is an BSAP Serial to Ethernet parser developed for the Zeek NSM platform. 
 
-This parser requires that there is a Serial to Ethernet converter converting serial BSAP to Ethernet using ports 1234 or 1235 over UDP. 
+This parser requires a serial to Ethernet converter converting serial BSAP to Ethernet using either port 1234 or 1235 over UDP. 
 
-This parser has been developed as a Zeek plugin that can be added to existing Zeek installations and log important fields and variables within the BSAP protocol. This parser was developed to be capture the most common used functions in the field. The functions within the [scripts/main.zeek](scripts/main.zeek) and [src/events.bif](src/events.bif) file should prove to be a good guide on how to add new logging functionality.
+This parser has been developed as a Zeek plugin that can be added to existing Zeek installations and log important fields and variables within the BSAP protocol. This parser was developed to be capture the most commonly used functions in the field. The functions within the [scripts/main.zeek](scripts/main.zeek) and [src/events.bif](src/events.bif) file should be a good guide on how to add new logging functionality.
 
-There are currently 4 Zeek log files that can be output by this parser. These log files are defined in the [scripts/main.zeek](scripts/main.zeek) file.
+There are currently 4 Zeek log files that can be produced by this parser. These log files are defined in [scripts/main.zeek](scripts/main.zeek).
 * bsap_serial_header.log
 * bsap_serial_rdb.log
 * bsap_serial_rdb_ext.log
 * bsap_serial_unknown.log 
 
 For additional information on these log files, see the *Logging Capabilities* section below.
-
-## NOTE
-If other BSAP parsers are installed ie. (BSAP_IP) then there will likely be other logs that show up because they will be parsing messages that come across on port 1234,1235 over UDP. If you would like to keep these separate you can change the ports on the serial to ethernet converter to a port that is not used. In (scripts/main.zeek) you can change the port to match the ports on the serial to ethernet converter before compiling code.
 
 ## Installation
 
@@ -54,7 +51,7 @@ tar xvzf build/Zeek_Bsap_serial.tar.gz -C $ZEEK_PLUGIN_PATH
 
 #### Overview
 
-This log captures BSAP header information for every BSAP packet converted to ethernet and logs it to **bsap_serial_header.log**.
+This log captures BSAP header information for every BSAP packet converted to Ethernet and logs it to **bsap_serial_header.log**.
 
 #### Fields Captured
 
@@ -71,7 +68,7 @@ This log captures BSAP header information for every BSAP packet converted to eth
 | seq               | count     | Message Sequence                                          |
 | sfun              | string    | Source Function                                           |
 | nsb               | count     | Node Status Byte                                          |
-| type_name         | string    | Local vs Global header                                    |
+| type_name         | string    | Local or Global header                                    |
 
 ### BSAP RDB (Remote Database Access) Log (bsap_serial_rdb.log)
 
@@ -79,8 +76,7 @@ This log captures BSAP header information for every BSAP packet converted to eth
 
 This log captures BSAP RDB function information and logs it to **bsap_serial_rdb.log**.
 
-The vast majority of BSAP traffic is RDB function traffic. The RDB access is used to read and write 
-variables between master and slave RTU's.
+The vast majority of BSAP traffic is RDB function traffic. The RDB access is used to read and write variables between master and slave RTU's.
 
 #### Fields Captured
 
@@ -98,8 +94,7 @@ variables between master and slave RTU's.
 
 This log captures BSAP RDB Extension function information and logs it to **bsap_serial_rdb_ext.log**.
 
-These Extension functions of RDB contain information from controllers loading date and time setting
-clearing diagnostics, and calling system resets. These only purtain to the GFC 3308 controllers.
+These Extension functions of RDB contain information from controllers loading date and time, setting clearing diagnostics, and calling system resets. These only pertain to the GFC 3308 controllers.
 
 #### Fields Captured
 
@@ -136,4 +131,4 @@ This log captures all other BSAP traffic that hasn't been defined and logs it to
 
 This script has been tested on the current Zeek LTS Release (Zeek 3.0.12) on various Linux machines.
 
-The [Examples](examples) directory contains a packet capture (and resulting Zeek logs) taken from combining various packet captures captured at Idaho National Laboratory.
+The [Examples](examples) directory contains a packet capture (and resulting Zeek logs) taken from combining various packet captures at Idaho National Laboratory.
