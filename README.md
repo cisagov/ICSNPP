@@ -2,23 +2,33 @@
 
 Industrial Control Systems Network Protocol Parsers  (ICSNPP) 
 
-Industrial Control Systems protocol parsers plugins for the Zeek network security monitoring framework. Currently we have four fully developed protocol parsers but we plan on adding more in the future.
+Industrial Control Systems protocol parsers plugins for the Zeek network security monitoring framework. Currently we have four fully developed protocol parsers and two extension scripts but we plan on adding more in the future.
+
+To clone this repository containing all ICSNPP packages you will need to add the recursive option to download the submodules.
+```bash
+git clone --recursive git@github.com:cisagov/ICSNPP.git
+```
+
+## ICSNPP Packages
+
+All ICSNPP Packages:
+* [ICSNPP](https://github.com/cisagov/icsnpp)
 
 Full ICS Protocol Parsers:
-* [BACnet](zeek_bacnet_parser):
-    * Full Zeek protocol parser for BACnet
-* [Ethernet/IP and CIP](zeek_enip_parser): 
-    * Full Zeek protocol parser for Ethernet/IP and CIP
-* [BSAP over IP](zeek_bsap_ip_parser)
+* [BACnet](https://github.com/cisagov/icsnpp-bacnet)
+    * Full Zeek protocol parser for BACnet (Building Control and Automation)
+* [BSAP over IP](https://github.com/cisagov/icsnpp-bsap-ip)
     * Full Zeek protocol parser for BSAP (Bristol Standard Asynchronous Protocol) over IP
-* [BSAP Serial->Ethernet](zeek_bsap_serial_parser)
-    * Full Zeek protocol parser for BSAP (Bristol Standard Asynchronous Protocol) over Serial->Ethernet  
+* [BSAP Serial->Ethernet](https://github.com/cisagov/icsnpp-bsap-serial)
+    * Full Zeek protocol parser for BSAP (Bristol Standard Asynchronous Protocol) over Serial->Ethernet
+* [Ethernet/IP and CIP](https://github.com/cisagov/icsnpp-enip)
+    * Full Zeek protocol parser for Ethernet/IP and CIP
 
 Updates to Zeek ICS Protocol Parsers:
-* [DNP3](zeek_dnp3_parser)
-    * Updates to DNP3 Zeek scripts for Zeek's default DNP3 protocol parser
-* [Modbus](zeek_modbus_parser)
-    * Updates to Modbus Zeek scripts for Zeek's default Modbus protocol parser
+* [DNP3](https://github.com/cisagov/icsnpp-dnp3)
+    * DNP3 Zeek script extending logging capabilites of Zeek's default DNP3 protocol parser
+* [Modbus](https://github.com/cisagov/icsnpp-modbus)
+    * Modbus Zeek script extending logging capabilites of Zeek's default Modbus protocol parser
 
 ### Other Software
 Idaho National Laboratory is a cutting edge research facility which is a constantly producing high quality research and software. Feel free to take a look at our other software and scientific offerings at:

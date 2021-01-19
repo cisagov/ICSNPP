@@ -1,2 +1,0 @@
-@load ./consts
-@load ./main
