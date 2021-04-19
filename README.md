@@ -15,6 +15,8 @@ Full ICS Protocol Parsers:
 * [BSAP](https://github.com/cisagov/icsnpp-bsap)
     * Full Zeek protocol parser for BSAP (Bristol Standard Asynchronous Protocol) over IP
     * Full Zeek protocol parser for BSAP Serial comm converted using serial tap device
+* [Ethercat](https://github.com/cisagov/icsnpp-ethercat)
+    * Full Zeek protocol parser for Ethercat
 * [Ethernet/IP and CIP](https://github.com/cisagov/icsnpp-enip)
     * Full Zeek protocol parser for Ethernet/IP and CIP
 
