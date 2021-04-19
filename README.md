@@ -12,10 +12,9 @@ All ICSNPP Packages:
 Full ICS Protocol Parsers:
 * [BACnet](https://github.com/cisagov/icsnpp-bacnet)
     * Full Zeek protocol parser for BACnet (Building Control and Automation)
-* [BSAP over IP](https://github.com/cisagov/icsnpp-bsap-ip)
+* [BSAP](https://github.com/cisagov/icsnpp-bsap)
     * Full Zeek protocol parser for BSAP (Bristol Standard Asynchronous Protocol) over IP
-* [BSAP Serial->Ethernet](https://github.com/cisagov/icsnpp-bsap-serial)
-    * Full Zeek protocol parser for BSAP (Bristol Standard Asynchronous Protocol) over Serial->Ethernet
+    * Full Zeek protocol parser for BSAP Serial comm converted using serial tap device
 * [Ethernet/IP and CIP](https://github.com/cisagov/icsnpp-enip)
     * Full Zeek protocol parser for Ethernet/IP and CIP
 
