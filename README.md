@@ -4,11 +4,6 @@ Industrial Control Systems Network Protocol Parsers  (ICSNPP)
 
 Industrial Control Systems protocol parsers plugins for the Zeek network security monitoring framework. Currently we have four fully developed protocol parsers and two extension scripts but we plan on adding more in the future.
 
-To clone this repository containing all ICSNPP packages you will need to add the recursive option to download the submodules.
-```bash
-git clone --recursive git@github.com:cisagov/ICSNPP.git
-```
-
 ## ICSNPP Packages
 
 All ICSNPP Packages:
