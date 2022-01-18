@@ -19,12 +19,14 @@ Full ICS Protocol Parsers:
     * Full Zeek protocol parser for Ethercat
 * [Ethernet/IP and CIP](https://github.com/cisagov/icsnpp-enip)
     * Full Zeek protocol parser for Ethernet/IP and CIP
+* [OPCUA-Binary](https://github.com/cisagov/icsnpp-opcua-binary)
+    * Full Zeek protocol parser for OPC UA (OPC Unified Architecture) - Binary
 
 Updates to Zeek ICS Protocol Parsers:
 * [DNP3](https://github.com/cisagov/icsnpp-dnp3)
-    * DNP3 Zeek script extending logging capabilites of Zeek's default DNP3 protocol parser
+    * DNP3 Zeek script extending logging capabilities of Zeek's default DNP3 protocol parser
 * [Modbus](https://github.com/cisagov/icsnpp-modbus)
-    * Modbus Zeek script extending logging capabilites of Zeek's default Modbus protocol parser
+    * Modbus Zeek script extending logging capabilities of Zeek's default Modbus protocol parser
 
 ### Other Software
 Idaho National Laboratory is a cutting edge research facility which is a constantly producing high quality research and software. Feel free to take a look at our other software and scientific offerings at:
