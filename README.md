@@ -19,6 +19,8 @@ Full ICS Protocol Parsers:
     * Full Zeek protocol parser for Ethercat
 * [Ethernet/IP and CIP](https://github.com/cisagov/icsnpp-enip)
     * Full Zeek protocol parser for Ethernet/IP and CIP
+* [Genisys](https://github.com/cisagov/icsnpp-genisys)
+    * Full Zeek protocol parser for Genisys
 * [OPCUA-Binary](https://github.com/cisagov/icsnpp-opcua-binary)
     * Full Zeek protocol parser for OPC UA (OPC Unified Architecture) - Binary
 
@@ -41,7 +43,7 @@ Idaho National Laboratory is a cutting edge research facility which is a constan
 
 ### License
 
-Copyright 2020 Battelle Energy Alliance, LLC
+Copyright 2022 Battelle Energy Alliance, LLC
 
 Licensed under the 3-Part BSD (the "License");
 you may not use this file except in compliance with the License.
