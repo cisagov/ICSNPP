@@ -1,0 +1,36 @@
+[submodule "bacnet"]
+	path = bacnet
+	url = https://github.com/cisagov/icsnpp-bacnet
+	branch = main
+[submodule "bsap"]
+	path = bsap
+	url = https://github.com/cisagov/icsnpp-bsap
+	branch = main
+[submodule "ethercat"]
+	path = ethercat
+	url = https://github.com/cisagov/icsnpp-ethercat
+	branch = main
+[submodule "enip"]
+	path = enip
+	url = https://github.com/cisagov/icsnpp-enip
+	branch = main
+[submodule "genisys"]
+	path = genisys
+	url = https://github.com/cisagov/icsnpp-genisys
+	branch = main
+[submodule "opcua-binary"]
+	path = opcua-binary
+	url = https://github.com/cisagov/icsnpp-opcua-binary
+	branch = main
+[submodule "s7comm"]
+	path = s7comm
+	url = https://github.com/cisagov/icsnpp-s7comm
+	branch = main
+[submodule "dnp3"]
+	path = dnp3
+	url = https://github.com/cisagov/icsnpp-dnp3
+	branch = main
+[submodule "modbus"]
+	path = modbus
+	url = https://github.com/cisagov/icsnpp-modbus
+	branch = main
