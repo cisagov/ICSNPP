@@ -34,3 +34,7 @@
 	path = modbus
 	url = https://github.com/cisagov/icsnpp-modbus
 	branch = main
+[submodule "synchrophasor"]
+	path = synchrophasor
+	url = https://github.com/cisagov/icsnpp-synchrophasor
+	branch = main
