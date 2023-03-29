@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Add issue to project board
-        uses: peter-evans/create-issue-comment@v1.5.2
+        uses: peter-evans/create-or-update-comment@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: 'Issue added to project board'
