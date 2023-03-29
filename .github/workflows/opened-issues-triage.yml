@@ -20,4 +20,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: 'Issue added to project board'
-          project-url: 'https://api.github.com/projects/columns/{column_id}/cards'
+          project-url: 'https://github.com/users/taeganw/projects/columns/Todo/cards'
