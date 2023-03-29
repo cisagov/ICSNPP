@@ -7,16 +7,17 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Move new issues into Triage
+name: Automate Issue to Project Column
 on:
   issues:
     types: [opened]
 jobs:
-  automate-project-columns:
+  automate-issue-to-project-column:
     runs-on: ubuntu-latest
     steps:
-      - uses: alex-page/github-project-automation-plus@v0.8.3
+      - name: Add issue to project board
+        uses: peter-evans/create-issue-comment@v1.5.2
         with:
-          project: ICS NPP (Network Protocol Parsers)
-          column: Triage
-          repo-token: ${{ secrets.GITHUB_TOKEN}}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: 'Issue added to project board'
+          project-url: 'https://api.github.com/projects/columns/{column_id}/cards'
