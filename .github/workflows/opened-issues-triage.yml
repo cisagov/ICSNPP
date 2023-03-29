@@ -7,16 +7,16 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Move new issues into Triage
-on:
-  issues:
-    types: [opened]
+name: Add a new GitHub Project card linked to a GitHub issue to the specified project column
+on: [issues, pull_request]
 jobs:
-  automate-project-columns:
+  github-actions-automate-projects:
     runs-on: ubuntu-latest
     steps:
-      - uses: alex-page/github-project-automation-plus@v0.8.3
-        with:
-          project: ICS NPP (Network Protocol Parsers)
-          column: Triage
-          repo-token: ${{ secrets.GITHUB_TOKEN}}
+    - name: add-new-issues-to-repository-based-project-column
+      uses: docker://takanabe/github-actions-automate-projects:v0.0.1
+      if: github.event_name == 'issues' && github.event.action == 'opened'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_PROJECT_URL: https://github.com/orgs/cisagov/projects/27
+        GITHUB_PROJECT_COLUMN_NAME: Triage
