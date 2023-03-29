@@ -7,17 +7,16 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Automate Issue to Project Column
+name: Move new issues into Triage
 on:
   issues:
     types: [opened]
 jobs:
-  automate-issue-to-project-column:
+  automate-project-columns:
     runs-on: ubuntu-latest
     steps:
-      - name: Add issue to project board
-        uses: peter-evans/create-or-update-comment@v2
+      - uses: alex-page/github-project-automation-plus@v0.8.3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          body: 'Issue added to project board'
-          project-url: 'https://github.com/users/taeganw/projects/columns/Todo/cards'
+          project: Test Project
+          column: Todo
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
