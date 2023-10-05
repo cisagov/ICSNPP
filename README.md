@@ -35,37 +35,17 @@ Updates to Zeek ICS Protocol Parsers:
     * Modbus Zeek script extending logging capabilities of Zeek's default Modbus protocol parser
 
 ### Other Software
-Idaho National Laboratory is a cutting edge research facility which is a constantly producing high quality research and software. Feel free to take a look at our other software and scientific offerings at:
+
+Idaho National Laboratory is a national research facility with a focus on development of software and toolchains to improve the security of criticial infrastructure environments around the world. Please review our other software and scientific offerings at:
 
 [Primary Technology Offerings Page](https://www.inl.gov/inl-initiatives/technology-deployment)
 
-[Supported Open Source Software](https://github.com/idaholab)
+[Open Source Software](https://github.com/idaholab)
 
-[Raw Experiment Open Source Software](https://github.com/IdahoLabResearch)
+[Software Tied to Research Papers and Experiments](https://github.com/IdahoLabResearch)
 
-[Unsupported Open Source Software](https://github.com/IdahoLabCuttingBoard)
+[Open Source Software (Unmaintained or Inactive Projects)](https://github.com/IdahoLabUnsupported)
 
 ### License
 
-Copyright 2022 Battelle Energy Alliance, LLC
-
-Licensed under the 3-Part BSD (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-  https://opensource.org/licenses/BSD-3-Clause
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-
-
-
-Licensing
------
-This software is licensed under the terms you may find in the file named "LICENSE" in this directory.
-
-You agree your contributions are submitted under the BSD-3-Clause license. You represent you are authorized to make the contributions and grant the license. If your employer has rights to intellectual property that includes your contributions, you represent that you have received permission to make contributions and grant the required license on behalf of that employer.
+Copyright 2023 Battelle Energy Alliance, LLC. Released under the terms of the 3-Clause BSD License (see [`LICENSE.txt`](./LICENSE.txt)).
