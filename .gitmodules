@@ -38,3 +38,7 @@
 	path = synchrophasor
 	url = https://github.com/cisagov/icsnpp-synchrophasor
 	branch = main
+[submodule "profinet-io-cm"]
+	path = profinet-io-cm
+	url = https://github.com/cisagov/icsnpp-profinet-io-cm
+	branch = main
