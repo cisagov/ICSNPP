@@ -27,6 +27,8 @@ Full ICS Protocol Parsers:
     * Full Zeek protocol parser for S7comm, S7comm-plus, and COTP
 * [Synchrophasor](https://github.com/cisagov/icsnpp-synchrophasor)
     * Full Zeek protocol parser for Synchrophasor Data Transfer for Power Systems (C37.118)
+* [Profinet IO CM](https://github.com/cisagov/icsnpp-profinet-io-cm)
+    * Full Zeek protocol parser for Profinet I/O Context Manager
 
 Updates to Zeek ICS Protocol Parsers:
 * [DNP3](https://github.com/cisagov/icsnpp-dnp3)
