@@ -42,3 +42,6 @@
 	path = profinet-io-cm
 	url = https://github.com/cisagov/icsnpp-profinet-io-cm
 	branch = main
+[submodule "ge-srtp"]
+	path = ge-srtp
+	url = https://github.com/cisagov/icsnpp-ge-srtp
