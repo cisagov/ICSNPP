@@ -45,3 +45,4 @@
 [submodule "ge-srtp"]
 	path = ge-srtp
 	url = https://github.com/cisagov/icsnpp-ge-srtp
+	branch = develop
