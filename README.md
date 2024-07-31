@@ -19,6 +19,8 @@ Full ICS Protocol Parsers:
     * Full Zeek protocol parser for Ethercat
 * [Ethernet/IP and CIP](https://github.com/cisagov/icsnpp-enip)
     * Full Zeek protocol parser for Ethernet/IP and CIP
+* [GE-SRTP](https://github.com/cisagov/icsnpp-ge-srtp)
+    * Zeek protocol parser for GE-SRTP
 * [Genisys](https://github.com/cisagov/icsnpp-genisys)
     * Full Zeek protocol parser for Genisys
 * [OPCUA-Binary](https://github.com/cisagov/icsnpp-opcua-binary)
