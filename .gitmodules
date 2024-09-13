@@ -46,3 +46,7 @@
 	path = ge-srtp
 	url = https://github.com/cisagov/icsnpp-ge-srtp
 	branch = develop
+[submodule "hart-ip"]
+	path = hart-ip
+	url = https://github.com/cisagov/icsnpp-hart-ip
+	branch = main

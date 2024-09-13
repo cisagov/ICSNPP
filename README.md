@@ -23,6 +23,8 @@ Full ICS Protocol Parsers:
     * Zeek protocol parser for GE-SRTP
 * [Genisys](https://github.com/cisagov/icsnpp-genisys)
     * Full Zeek protocol parser for Genisys
+* [HART-IP](https://github.com/cisagov/icsnpp-hart-ip)
+    * Zeek protocol parser for HART-IP
 * [OPCUA-Binary](https://github.com/cisagov/icsnpp-opcua-binary)
     * Full Zeek protocol parser for OPC UA (OPC Unified Architecture) - Binary
 * [S7Comm](https://github.com/cisagov/icsnpp-s7comm)
