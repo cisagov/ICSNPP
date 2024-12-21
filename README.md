@@ -25,6 +25,8 @@ Full ICS Protocol Parsers:
     * Full Zeek protocol parser for Genisys
 * [HART-IP](https://github.com/cisagov/icsnpp-hart-ip)
     * Zeek protocol parser for HART-IP
+* [Omron FINS](https://github.com/cisagov/icsnpp-omron-fins)
+    * Zeek protocol parser for Omron FINS
 * [OPCUA-Binary](https://github.com/cisagov/icsnpp-opcua-binary)
     * Full Zeek protocol parser for OPC UA (OPC Unified Architecture) - Binary
 * [S7Comm](https://github.com/cisagov/icsnpp-s7comm)
