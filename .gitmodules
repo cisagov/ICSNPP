@@ -50,3 +50,7 @@
 	path = hart-ip
 	url = https://github.com/cisagov/icsnpp-hart-ip
 	branch = main
+[submodule "omron-fins"]
+	path = omron-fins
+	url = https://github.com/cisagov/icsnpp-omron-fins.git
+	branch = main
