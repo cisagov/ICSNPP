@@ -53,3 +53,4 @@
 [submodule "omron-fins"]
 	path = omron-fins
 	url = https://github.com/cisagov/icsnpp-omron-fins.git
+	branch = main
