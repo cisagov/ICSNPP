@@ -59,3 +59,6 @@
 	url = https://github.com/cisagov/icsnpp-roc-plus
 	branch = main
 
+[submodule "icsnpp-roc-plus"]
+	path = icsnpp-roc-plus
+	url = https://github.com/cisagov/icsnpp-roc-plus
