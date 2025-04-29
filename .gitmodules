@@ -52,5 +52,10 @@
 	branch = main
 [submodule "omron-fins"]
 	path = omron-fins
-	url = https://github.com/cisagov/icsnpp-omron-fins.git
+	url = https://github.com/cisagov/icsnpp-omron-fins
 	branch = main
+[submodule "roc-plus"]
+	path = roc-plus
+	url = https://github.com/cisagov/icsnpp-roc-plus
+	branch = main
+
