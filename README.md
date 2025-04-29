@@ -29,6 +29,8 @@ Full ICS Protocol Parsers:
     * Zeek protocol parser for Omron FINS
 * [OPCUA-Binary](https://github.com/cisagov/icsnpp-opcua-binary)
     * Full Zeek protocol parser for OPC UA (OPC Unified Architecture) - Binary
+* [ROC-Plus](https://github.com/cisagov/icsnpp-roc-plus)
+    * Full Zeek protocol parser for ROC Plus
 * [S7Comm](https://github.com/cisagov/icsnpp-s7comm)
     * Full Zeek protocol parser for S7comm, S7comm-plus, and COTP
 * [Synchrophasor](https://github.com/cisagov/icsnpp-synchrophasor)
